@@ -1,3 +1,4 @@
+// https://shielded-fjord-49585.herokuapp.com
 const express  = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -7,7 +8,7 @@ const app = express();
 app.use(bodyParser.urlencoded( {extended : true }));
 app.set('view engine','ejs');
 app.use(express.static('public'));
-app.listen(3000,function(){
+app.listen(process.env.port||3000,function(){
   console.log("Server started successfully at port number 3000");
 });
 
