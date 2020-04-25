@@ -1,10 +1,4 @@
-// https://shielded-fjord-49585.herokuapp.com
 
-
-
-// GOOGLE
-//
-// 
 const keys = require('./config/keys');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -34,8 +28,8 @@ const userSchema = new mongoose.Schema({
 
 });
 mongoose.model('User',userSchema);
-// require('./services/passport');
-require('./services/PASSPORT');
+ require('./services/passport');
+// require('./services/newMethodPassport');
 
 app.use(bodyParser.urlencoded({
   extended: true
