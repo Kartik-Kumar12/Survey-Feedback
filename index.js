@@ -1,4 +1,3 @@
-
 const keys = require('./config/keys');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,9 +8,9 @@ const cookieSession = require('cookie-session');
 
 
 //MIDDLEWARES TO HANDLE INCOMING REQUEST BEFORE PASSING TO ROUTE HANDLERS
-app.use( cookieSession ({
-  maxAge : 10*24*60*60*1000,
-  keys : [keys.COOKIE_KEY]
+app.use(cookieSession({
+  maxAge: 10 * 24 * 60 * 60 * 1000,
+  keys: [keys.COOKIE_KEY]
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -23,35 +22,35 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 
-if( process.env.NODE_ENV === 'production')
+if (process.env.NODE_ENV === "production")
   app.use(express.static('client/build'));
 else {
   const path = require('path');
-  app.get('*', (req,res) => {
-    res.sendFile( path.resolve(__dirname,'client','build','index.html'))  ;
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
 
 //Mongoose connection to database
-mongoose.connect(keys.MONGO_URI+"surveyfeedbackDB", {
+mongoose.connect(keys.MONGO_URI + "surveyfeedbackDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
 //UserSchema for storing users
 const userSchema = new mongoose.Schema({
-   name : String,
-   googleId: String,
-   email: String,
-   credits : {
-     type : Number,
-     default: 0
-   }
+  name: String,
+  googleId: String,
+  email: String,
+  credits: {
+    type: Number,
+    default: 0
+  }
 });
 
-mongoose.model('User',userSchema);
- require('./services/passport');
+mongoose.model('User', userSchema);
+require('./services/passport');
 // require('./services/newMethodPassport');
 
 let port = process.env.PORT;
