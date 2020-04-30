@@ -1,6 +1,6 @@
 const keys = require('../config/keys');
 const requireLogin = require('../middleware/requireLogin');
-const stripe = require('stripe')(keys.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(keys.stripeSecretKey);
 
 module.exports = app => {
   app.post('/api/stripe', requireLogin ,(req, res) => {
