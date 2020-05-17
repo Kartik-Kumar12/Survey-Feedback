@@ -19,8 +19,22 @@ app.use(bodyParser.urlencoded({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+//Mongoose connection to database
+mongoose.connect(keys.MONGO_URI + "surveyfeedbackDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+require('./models/Users');
+require('./models/Surveys');
+require('./services/passport');
+// require('./services/newMethodPassport');
+
+
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveysRoutes')(app);
 
 if (process.env.NODE_ENV === "production"){
   // EXPRESS WILL SERVE PRODUCTION STATIC FILES LIKE CSS AND JS
@@ -34,32 +48,16 @@ if (process.env.NODE_ENV === "production"){
 }
 
 
-//Mongoose connection to database
-mongoose.connect(keys.MONGO_URI + "surveyfeedbackDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
-//UserSchema for storing users
-const userSchema = new mongoose.Schema({
-  name: String,
-  googleId: String,
-  email: String,
-  credits: {
-    type: Number,
-    default: 0
-  }
-});
-
-mongoose.model('User', userSchema);
-require('./services/passport');
-// require('./services/newMethodPassport');
 
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
 }
+app.get('/',(req,res) => {
+  res.send("Hello thete");
+})
 
 app.listen(port, function() {
-  console.log("Server started successfully at given port");
+  console.log("Server started successfully at port number 3000");
 });

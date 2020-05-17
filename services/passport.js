@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('../config/keys.js');
 const mongoose = require('mongoose');
-const User = mongoose.model('User')
+const User = mongoose.model('User');
 
 passport.serializeUser((user,done)=>{
   done(null,user.id);
@@ -10,8 +10,8 @@ passport.serializeUser((user,done)=>{
 passport.deserializeUser((id,done) => {
   User.findById(id , (err,user) => {
     done(err,user);
-  })
-})
+  });
+});
 
 passport.use(new GoogleStrategy({
     clientID: keys.GOOGLE_CLIENT_ID,
@@ -31,8 +31,9 @@ passport.use(new GoogleStrategy({
       return done(null,user);
     }
   }
+
   // (accessToken, refreshToken, profile, done) => {
-  //   User.findOne({googleId : profile.i d},function(err,foundUser){
+  //   User.findOne({googleId : profile.id},function(err,foundUser){
   //     if(foundUser)
   //     {
   //       console.log(foundUser);

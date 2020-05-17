@@ -16,13 +16,12 @@ class Header extends Component {
                        );
 
      default :   return (  <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                 <li><a href="sass.html">Hello {this.props.auth.name}</a></li>
+                                 <li>Hello {this.props.auth.name}</li>
                                  <li style={{ margin : "0 10px"}}><button className="btn">CREDITS: {this.props.auth.credits}</button></li>
                                  <li><Payment/></li>
-                                 <li style={{ margin : "0 10px"}}><button className="btn"><a href="/api/logout">LOGOUT</a></button></li>
+                                 <li style={{ margin : "0 10px"}}><a href="/api/logout"><button className="btn">LOGOUT</button></a></li>
                               </ul>
                           );
-
     }
   }
 
@@ -41,4 +40,4 @@ class Header extends Component {
 function mapStateToProps({auth}){
   return {auth};
 }
-export default connect(mapStateToProps)(Header)  ;
+export default connect(mapStateToProps)(Header) ;

@@ -4,5 +4,7 @@ module.exports = {
   MONGO_URI : process.env.MONGO_URI,
   COOKIE_KEY : process.env.COOKIE_KEY,
   stripePublishableKey : process.env.STRIPE_PUBLISHABLE_KEY,
-  stripeSecretKey : process.env.STRIPE_SECRET_KEY
+  stripeSecretKey : process.env.STRIPE_SECRET_KEY,
+  sendGridKey : process.env.SEND_GRID_KEY,
+  redirectEmailURL : process.env.REDIRECT_EMAIL_URL
 }

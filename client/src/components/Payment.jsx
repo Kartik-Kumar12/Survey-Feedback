@@ -9,7 +9,7 @@ class Payment extends Component {
     return <StripeCheckout
               name = "SurFey"
               description = "Pay Rs 250 for 5 surveys credits"
-              amount ={500}
+              amount ={25000}
               token = { token => this.props.handleToken(token) }
               stripeKey = { process.env.REACT_APP_STRIPE_KEY }
              >
