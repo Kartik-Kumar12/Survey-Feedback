@@ -3,7 +3,7 @@ const {isLoggedIn,hasCredits} = require('../middleware/requireUserCredentials');
 const stripe = require('stripe')(keys.stripeSecretKey);
 
 module.exports = app => {
-  
+
   app.post('/api/stripe', isLoggedIn ,async (req, res) => {
     await stripe.charges.create({
       amount: 25000,
@@ -16,3 +16,6 @@ module.exports = app => {
     res.send(user);
   });
  }
+
+
+ 
