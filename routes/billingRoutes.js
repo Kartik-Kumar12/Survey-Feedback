@@ -9,10 +9,12 @@ module.exports = app => {
       amount: 500,
       currency: 'INR',
       source: req.body.id,
-      description: 'Pay $5  for 5 credits',
+      description: 'Pay $ 5  for 5 credits',
      });
     req.user.credits+=5;
     const user = await req.user.save();
     res.send(user);
   });
  }
+
+// test-card = 4242 4242 4242 4242
